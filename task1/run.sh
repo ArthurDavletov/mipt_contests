@@ -47,5 +47,5 @@ function RecursionCopyFiles() {
 mkdir -p "$backup_folder"
 RecursionCopyFiles "$input_folder" "$backup_folder"
 tar -zcf $backup_archive_name $backup_folder
-rm -rf $backup_folder
+# rm -rf $backup_folder
 echo "done"
