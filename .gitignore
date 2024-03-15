@@ -1,0 +1,4 @@
+task1/repo
+task1/backup
+task1/*.tar.gz
+task1/*.cpp
