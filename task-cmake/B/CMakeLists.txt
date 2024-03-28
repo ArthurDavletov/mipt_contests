@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(SortProject)
+project(SortLibrary)
 
-set(CMAKE_BINARY_DIR ../bin)
-add_library(SortProject lib.cpp)
-add_executable(C ../C/main.cpp)
+set(SOURCE_LIB lib.cpp)
+add_library(SortLibrary SHARED ${SOURCE_LIB})
