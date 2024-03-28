@@ -38,4 +38,5 @@ make Makefile
 Или одной командой:
 
 ```sh
-cd task-cmake && mkdir build && cd build && cmake .. && make Makefile```
+cd task-cmake && mkdir build && cd build && cmake .. && make Makefile
+```

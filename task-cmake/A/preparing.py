@@ -1,5 +1,5 @@
 def create_header():
-    with open("task-cmake/A/index.h", "w", encoding="utf-8") as file:
+    with open("../A/index.h", "w", encoding="utf-8") as file:
         header_body = """\
 #ifndef INDEX_H
 #define INDEX_H
