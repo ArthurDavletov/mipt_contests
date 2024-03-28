@@ -5,3 +5,5 @@ task1/*.cpp
 
 task-cmake/A/index.h
 task-cmake/C/main
+build/
+.vscode/

@@ -1,8 +1,21 @@
-#include <iostream>
-#include "../B/lib.h"
-#include "../A/index.h"
+#include "main.h"
 
 int main() {
-  std::cout << "Hello World" << std::endl;
+  // Количество элементов
+  size_t n;
+  std::cin >> n;
+
+  std::vector<int64_t> arr(n);
+  for (size_t i = 0; i < n; i++) {
+    std::cin >> arr[i];
+  }
+
+  SelectionSort(arr);
+
+  for (auto elem : arr) {
+    std::cout << elem << ' ';
+  }
+  std::cout << std::endl;
+
   return 0;
 }
