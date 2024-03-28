@@ -2,10 +2,9 @@
 #define LIB_H
 
 #include <vector>
-#include <cstdint>
+#include <cstddef>
 
 // Сортировка выбором
-template <class T>
-void SelectionSort(std::vector<T>&);
+void SelectionSort(std::vector<int>&);
 
 #endif
