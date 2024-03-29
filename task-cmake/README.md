@@ -4,9 +4,12 @@
 
 ## Структура файлов
 
+Жирным обозначены файлы, которые генерируются после сборки проекта с помощью CMake
+
 * task-cmake/
   * A/
     * preparing.py
+    * ***index.h***
   * B/
     * CMakeLists.txt
     * lib.cpp
@@ -14,6 +17,11 @@
   * C/
     * main.cpp
     * main.h
+  * ***bin/***
+    * ***C***
+    * ***CTest***
+  * ***build/***
+  * ***lib***
   * README.MD
   * CMakeLists.txt
 
