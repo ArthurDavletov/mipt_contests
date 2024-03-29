@@ -31,12 +31,13 @@
 cd task-cmake
 mkdir build
 cd build
-cmake ../B/CMakeLists.txt
-make Makefile
+cmake ..
+make
+cd ..
 ```
 
 Или одной командой:
 
 ```sh
-cd task-cmake && mkdir build && cd build && cmake .. && make Makefile
+cd task-cmake && mkdir build && cd build && cmake .. && make && cd ..
 ```
