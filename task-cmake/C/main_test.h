@@ -5,9 +5,13 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <random>
+
+#ifndef TASK_A_H
 #include "A/index.h"
+#endif // TASK_A_H
+
+#ifndef TASK_B_H
 #include "B/lib.h"
-#include "task_A.h"
-#include "task_B.h"
+#endif // TASK_B_H
 
 #endif

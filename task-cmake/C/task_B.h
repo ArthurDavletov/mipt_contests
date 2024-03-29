@@ -1,6 +1,13 @@
 #ifndef TASK_B_H
 #define TASK_B_H
 
-void CheckIndex(const std::vector<int>&, int elem);
+#include <gtest/gtest.h>
+#include <vector>
+#include <random>
+
+void SelectionSort(std::vector<int>&);
+
+void CheckVector(std::vector<int>&&);
+void CheckVector(std::vector<int>&);
 
 #endif
