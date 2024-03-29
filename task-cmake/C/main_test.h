@@ -6,8 +6,8 @@
 #include <vector>
 #include <algorithm>
 #include <random>
-#include "../B/lib.h"
-#include "../A/index.h"
+#include "A/index.h"
+#include "B/lib.h"
 
 void CheckVector(std::vector<int>&&);
 void CheckVector(std::vector<int>&);

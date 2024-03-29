@@ -18,8 +18,6 @@ int GetIndex(const std::vector<int>& s, int elem) {
   return -1;
 }
 
-// Что тут написать, я не знаю, помогите
-
 #endif
 """
         file.write(header_body)

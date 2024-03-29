@@ -17,9 +17,11 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(CTest main_test.h ../A/index.h main_test.cpp)
+add_executable(CTest main_test.cpp)
 
 add_dependencies(CTest GenerateHeader)
+
+target_include_directories(CTest PUBLIC ${PROJECT_SOURCE_DIR}/..)
 target_link_libraries(CTest GTest::gtest_main)
 target_link_libraries(CTest SortLibrary)
 
