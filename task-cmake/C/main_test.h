@@ -7,8 +7,10 @@
 #include <algorithm>
 #include <random>
 #include "../B/lib.h"
+#include "../A/index.h"
 
-void CheckVectors(std::vector<int>&&);
-void CheckVectors(std::vector<int>&);
+void CheckVector(std::vector<int>&&);
+void CheckVector(std::vector<int>&);
+void CheckIndex(const std::vector<int>&, int elem);
 
 #endif
