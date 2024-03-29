@@ -15,8 +15,15 @@
     * ```lib.cpp```
     * ```lib.h```
   * ```C/```
+    * ```CMakeLists.txt```
+    * ```main_test.cpp```
+    * ```main_test.h```
     * ```main.cpp```
     * ```main.h```
+    * ```task_A.cpp```
+    * ```task_A.h```
+    * ```task_B.cpp```
+    * ```task_B.h```
   * ***```bin/```***
     * ***```C```***
     * ***```CTest```***
