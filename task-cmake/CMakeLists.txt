@@ -13,7 +13,7 @@ add_custom_target(
   COMMENT "Создание index.h"
 )
 
-add_subdirectory(B lib/)
+add_subdirectory(B ../lib/)
 add_executable(C A/index.h C/main.h C/main.cpp)
 add_dependencies(C GenerateHeader)
 target_link_libraries(C SortLibrary)

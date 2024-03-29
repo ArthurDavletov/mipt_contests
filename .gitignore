@@ -8,4 +8,5 @@ task-cmake/C/main
 task-cmake/build.sh
 build/
 bin/
+lib/
 .vscode/
