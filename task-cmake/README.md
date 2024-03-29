@@ -6,26 +6,36 @@
 
 Жирным обозначены файлы, которые генерируются после сборки проекта с помощью CMake
 
-* task-cmake/
-  * A/
-    * preparing.py
-    * ***index.h***
-  * B/
-    * CMakeLists.txt
-    * lib.cpp
-    * lib.h
-  * C/
-    * main.cpp
-    * main.h
-  * ***bin/***
-    * ***C***
-    * ***CTest***
-  * ***build/***
-  * ***lib/***
-  * README.MD
-  * CMakeLists.txt
+* ```task-cmake/```
+  * ```A/```
+    * ```preparing.py```
+    * ***```index.h```***
+  * ```B/```
+    * ```CMakeLists.txt```
+    * ```lib.cpp```
+    * ```lib.h```
+  * ```C/```
+    * ```main.cpp```
+    * ```main.h```
+  * ***```bin/```***
+    * ***```C```***
+    * ***```CTest```***
+  * ***```build/```***
+  * ***```lib/```***
+  * ```README.MD```
+  * ```CMakeLists.txt```
 
 ## Описание каждого файла
+
+### ```A/preparing.py```
+
+Python-скрипт, который генерирует index.h
+
+### ```A/index.h```
+
+Header-файл, который генерируется после запуска сборки проекта. При каждой сборке содержимое перезаписывается файлом из ```A/preparing.py```
+
+### Остальные файлы
 
 * preparing.py -- генерирует index.h (пока заглушка)
 * /B/CMakeLists.txt -- cmake-лист для сборки библиотеки сортировки
