@@ -21,7 +21,7 @@
     * ***C***
     * ***CTest***
   * ***build/***
-  * ***lib***
+  * ***lib/***
   * README.MD
   * CMakeLists.txt
 
