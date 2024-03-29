@@ -1,9 +1,7 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.14)
 
 project(SortProject)
 find_package(Python COMPONENTS Interpreter REQUIRED)
-
-# set(CMAKE_BINARY_DIR bin)
 
 add_custom_target(
   GenerateHeader
@@ -18,3 +16,5 @@ add_executable(C A/index.h C/main.h C/main.cpp)
 add_dependencies(C GenerateHeader)
 target_link_libraries(C SortLibrary)
 set_target_properties(C PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
+add_subdirectory(C)
