@@ -14,7 +14,7 @@ add_custom_target(
 )
 
 add_subdirectory(B)
-add_executable(C C/main.h C/main.cpp)
+add_executable(C A/index.h C/main.h C/main.cpp)
 add_dependencies(C GenerateHeader)
 target_link_libraries(C SortLibrary)
 set_target_properties(C PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
