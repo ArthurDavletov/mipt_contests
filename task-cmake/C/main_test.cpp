@@ -34,21 +34,15 @@ void CheckIndex(const std::vector<int>& s, int elem) {
 }
 
 namespace {
-  TEST(SelectionSortTest, OneElem) {
+  TEST(SelectionSortTest, SortTests) {
     CheckVector({1});
     CheckVector({0});
     CheckVector({-1});
-  }
-
-  TEST(SelectionSortTest, TwoElems) {
     for (int i = -3; i <= 3; i++) {
       for (int j = -3; j <= 3; j++) {
         CheckVector({i, j});
       }
     }
-  }
-
-  TEST(SelectionSortTest, RandomTests) {
     for (int i = 0; i < 30; i++) {
       int size = rand() % 500;
       std::vector<int> s(size);
@@ -59,12 +53,9 @@ namespace {
     }
   }
 
-  TEST(HeaderCheck, IntValues) {
+  TEST(HeaderCheck, IndexTests) {
     ASSERT_EQ(code_year, code_year);  // наличие такой переменной
-  }
-
-  TEST(HeaderCheck, IndexRandomCheck) {
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < 50; i++) {
       int size = rand() % 500;
       std::vector<int> s(size);
       for (int i = 0; i < size; i++) {
