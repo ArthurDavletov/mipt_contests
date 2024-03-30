@@ -7,7 +7,7 @@ void CheckVector(std::vector<int>&& y) {
   // x - моя сортировка, y - реальная
   ASSERT_EQ(y.size(), x.size()) << "У векторов разные размеры\n";
   for (size_t i = 0; i < y.size(); i++) {
-    EXPECT_EQ(y[i], x[i]);
+    EXPECT_EQ(y[i], x[i]) << "Неверно отсортирован";
   }
 }
 
