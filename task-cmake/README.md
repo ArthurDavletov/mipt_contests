@@ -36,7 +36,7 @@
 
 ```sh
 cd task-cmake
-mkdir build
+mkdir -p build
 cd build
 cmake ..
 make
@@ -46,7 +46,7 @@ cd ..
 Или одной командой:
 
 ```sh
-cd task-cmake && mkdir build && cd build && cmake .. && make && cd ..
+cd task-cmake && mkdir -p build && cd build && cmake .. && make && cd ..
 ```
 
 ## Описание каждого файла
