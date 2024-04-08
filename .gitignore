@@ -2,3 +2,9 @@ task1/repo
 task1/backup
 task1/*.tar.gz
 task1/*.cpp
+
+PythonEnvironment/*
+build/
+3rdparty/
+bin/
+.idea/
