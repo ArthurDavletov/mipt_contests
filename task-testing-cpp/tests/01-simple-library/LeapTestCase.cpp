@@ -10,14 +10,14 @@
 TEST(LeapTestCase, NonLeapYears) {
   std::vector<int> years = {2010, 2011, 2013, 2014, 2015, 2017, 2018, 2019, 2021, 2022, 2023, 2025, 2026, 2027, 2029};
   for (int year : years) {
-    ASSERT_TRUE(!IsLeap(year));
+    ASSERT_FALSE(IsLeap(year));
   }
 }
 
 TEST(LeapTestCase, SpecialNonLeapYears) {
   std::vector<int> years = {100, 200, 300, 500, 600, 700, 900, 1000, 1100, 1300, 1400, 1500, 1700, 1800, 1900, 2100};
   for (int year : years) {
-    ASSERT_TRUE(!IsLeap(year));
+    ASSERT_FALSE(IsLeap(year));
   }
 }
 
