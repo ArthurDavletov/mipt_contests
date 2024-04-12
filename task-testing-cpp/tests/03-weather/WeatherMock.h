@@ -14,7 +14,7 @@ void ToFile(const std::unordered_map<std::string, std::unordered_map<std::string
 
 class WeatherMock : public Weather {
  public:
-  // WeatherMock();
+  WeatherMock();
   MOCK_METHOD(json, GetResponseForCity, (const std::string &city, const cpr::Url& url));
   MOCK_METHOD(float, GetTemperature, (const std::string& city), (override));
   MOCK_METHOD(float, GetTomorrowTemperature, (const std::string& city), (override));
@@ -24,11 +24,8 @@ class WeatherMock : public Weather {
   MOCK_METHOD(std::string, GetDifferenceString, (const std::string& city1, const std::string& city2));
   MOCK_METHOD(std::string, GetTomorrowDiff, (const std::string& city));
   MOCK_METHOD(cpr::Response, Get, (const std::string& city, const cpr::Url& url), (override));
-  void DelegateToFake() {
-    ON_CALL(*this, Get).WillByDefault([this](const std::string& city, const cpr::Url& url) {
-      return weather_fake_.Get(city, url);
-    });
-  }
+  void DelegateToFakeGet();
+  // void SetFakeApiKey(const std::string& api_key);
   // cpr::Response Get(const std::string& city, const cpr::Url& url) override;
   // ~WeatherMock();
  private:

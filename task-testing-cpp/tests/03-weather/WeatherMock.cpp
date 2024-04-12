@@ -85,3 +85,16 @@ cpr::Response WeatherFake::Get(const std::string& city, const cpr::Url& url) {
 void WeatherFake::SetApiKey(const std::string& api_key) {
   api_key_ = api_key;
 }
+
+WeatherMock::WeatherMock() {
+  ON_CALL(*this, SetApiKey).WillByDefault([this](const std::string& api_key) {
+    weather_fake_.SetApiKey(api_key);
+    SetApiKey(api_key);
+  });
+}
+
+void WeatherMock::DelegateToFakeGet() {
+  ON_CALL(*this, Get).WillByDefault([this](const std::string& city, const cpr::Url& url) {
+    return weather_fake_.Get(city, url);
+  });
+}
