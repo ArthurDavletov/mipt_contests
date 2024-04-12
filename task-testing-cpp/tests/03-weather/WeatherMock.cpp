@@ -14,7 +14,7 @@ std::unordered_map<std::string, std::unordered_map<std::string, cpr::Response>> 
     const std::string& url = it.key();
     const json& in_json = it.value();
     std::unordered_map<std::string, cpr::Response> in_map;
-    for (auto jt = in_json.begin(); jt != in_json.end(); jt++) {
+    for (auto jt = in_json.begin(); jt != in_json.end(); jt++) { 
       const std::string& city = jt.key();
       const json& json_response = jt.value();
       cpr::Response response;
@@ -46,7 +46,8 @@ void ToFile(const std::unordered_map<std::string, std::unordered_map<std::string
   f << json_obj;
 }
 
-WeatherMock::WeatherMock() {
+WeatherFake::WeatherFake(const std::string& api_key = "") {
+  api_key_ = api_key;
   if (!fs::exists("weather_cache/cache.json")) {
     fs::create_directory("weather_cache");
     std::ofstream("weather_cache/cache.json").close();
@@ -57,13 +58,13 @@ WeatherMock::WeatherMock() {
   f.close();
 }
 
-WeatherMock::~WeatherMock() {
+WeatherFake::~WeatherFake() {
   std::ofstream f("weather_cache/cache.json");
   ToFile(requests_cache_, f);
   f.close();
 }
 
-cpr::Response WeatherMock::Get(const std::string& city, const cpr::Url& url) {
+cpr::Response WeatherFake::Get(const std::string& city, const cpr::Url& url) {
   const std::string& url_str = url.str();
   if (requests_cache_.find(url_str) == requests_cache_.end()) {
     requests_cache_[url_str] = std::unordered_map<std::string, cpr::Response>();
@@ -72,11 +73,15 @@ cpr::Response WeatherMock::Get(const std::string& city, const cpr::Url& url) {
     requests_cache_[url_str][city] = cpr::Get(
       url, cpr::Parameters{
         {"q", city},
-        {"apikey", this->api_key_},
+        {"apikey", api_key_},
         {"metric", "true"},
         {"language", "en-us"}
       }
     );
   }
   return requests_cache_[url_str][city];
+}
+
+void WeatherFake::SetApiKey(const std::string& api_key) {
+  api_key_ = api_key;
 }
