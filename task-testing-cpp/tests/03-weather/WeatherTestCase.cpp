@@ -3,22 +3,31 @@
 //
 
 #include "WeatherTestCase.h"
-#include "WeatherMock.h"
 
 namespace fs = std::filesystem;
+using ::testing::_;
 
-void WeatherTestCase::SetUpTestSuite() {
-  WeatherMock weather_mock;
-  std::string api_key = "";
+WeatherMock* WeatherTestCase::weather_mock;
+
+// WeatherTestCase::WeatherTestCase() {
+void WeatherTestCase::SetUpTestSuite () {
+  std::string key = "";
+  weather_mock = new WeatherMock();
   const std::string& path = "api_key.txt";  // путь к вашему файлу с api-key
   if (fs::exists(path)) {
     std::ifstream f(path);
-    f >> api_key;
+    f >> key;
     f.close();
   }
-  weather_mock.SetApiKey(api_key);
+  weather_mock->SetApiKey(key);
 }
 
-TEST_F(WeatherTestCase, AA) {
-  ASSERT_EQ("123", "123");
+void WeatherTestCase::TearDownTestSuite() {
+  delete weather_mock;
+}
+
+TEST_F(WeatherTestCase, GetTemperature) {
+  std::cout << "t = " << weather_mock->GetTemperature("Ufa") << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
+  EXPECT_CALL(*weather_mock, GetLocationKey(_));
+  weather_mock->DelegateToFakeGet();
 }
