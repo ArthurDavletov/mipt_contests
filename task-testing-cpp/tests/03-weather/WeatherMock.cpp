@@ -1,7 +1,3 @@
-//
-// Created by Pavel Akhtyamov on 02.05.2020.
-//
-
 #include "WeatherMock.h"
 
 namespace fs = std::filesystem;
@@ -51,20 +47,23 @@ void ToFile(const std::unordered_map<std::string, std::unordered_map<std::string
 }
 
 WeatherFake::WeatherFake() {
-  if (!fs::exists("weather_cache/cache.json")) {
+  if (!fs::exists("weather_cache/weather_cache.json")) {
     fs::create_directory("weather_cache");
-    std::ofstream("weather_cache/cache.json").close();
+    std::ofstream("weather_cache/weather_cache.json").close();
     return;
   }
-  std::ifstream f("weather_cache/cache.json");
+  std::ifstream f("weather_cache/weather_cache.json");
   requests_cache_ = FromFile(f);
   f.close();
 }
 
 WeatherFake::~WeatherFake() {
-  std::ofstream f("weather_cache/cache.json");
-  ToFile(requests_cache_, f);
-  f.close();
+  std::ifstream fin("weather_cache/weather_cache.json");
+  requests_cache_.merge(FromFile(fin));
+  fin.close();
+  std::ofstream fout("weather_cache/weather_cache.json");
+  ToFile(requests_cache_, fout);
+  fout.close();
 }
 
 cpr::Response WeatherFake::Get(const std::string& city, const cpr::Url& url) {
@@ -94,7 +93,7 @@ void WeatherFake::SetFakeApiKey(const std::string& api_key) {
   SetApiKey(api_key);
 }
 
-WeatherMock::WeatherMock() {
+WeatherMock::WeatherMock() : WeatherFake() {
   ON_CALL(*this, SetApiKey).WillByDefault([this](const std::string& api_key) {
     SetFakeApiKey(api_key);
   });

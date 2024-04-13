@@ -1,7 +1,3 @@
-//
-// Created by Pavel Akhtyamov on 02.05.2020.
-//
-
 #pragma once
 
 #include <gmock/gmock.h>
@@ -37,7 +33,7 @@ class WeatherMock : public WeatherFake {
   MOCK_METHOD(json, GetResponseForCity, (const std::string &city, const cpr::Url& url));
   MOCK_METHOD(float, GetTemperature, (const std::string& city), (override));
   MOCK_METHOD(float, GetTomorrowTemperature, (const std::string& city), (override));
-  MOCK_METHOD(std::string, GetLocationKey, (const std::string& city), (override));
+  // MOCK_METHOD(std::string, GetLocationKey, (const std::string& city), (override));
   MOCK_METHOD(float, FindDiffBetweenTwoCities, (const std::string& city1, const std::string& city2));
   MOCK_METHOD(void, SetApiKey, (const std::string& api_key));
   MOCK_METHOD(std::string, GetDifferenceString, (const std::string& city1, const std::string& city2));

@@ -1,18 +1,14 @@
-//
-// Created by Pavel Akhtyamov on 02.05.2020.
-//
-
 #include "WeatherTestCase.h"
 
 namespace fs = std::filesystem;
 using ::testing::_;
 
-WeatherMock* WeatherTestCase::weather_mock;
+NiceMock<WeatherMock>* WeatherTestCase::weather_mock;
 
 // WeatherTestCase::WeatherTestCase() {
 void WeatherTestCase::SetUpTestSuite () {
   std::string key = "";
-  weather_mock = new WeatherMock();
+  weather_mock = new NiceMock<WeatherMock>();
   const std::string& path = "api_key.txt";  // путь к вашему файлу с api-key
   if (fs::exists(path)) {
     std::ifstream f(path);
@@ -27,7 +23,14 @@ void WeatherTestCase::TearDownTestSuite() {
 }
 
 TEST_F(WeatherTestCase, GetTemperature) {
-  std::cout << "t = " << weather_mock->GetTemperature("Ufa") << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
-  EXPECT_CALL(*weather_mock, GetLocationKey(_));
+  NiceMock<WeatherMock> wm;
+  wm.DelegateToFakeGet();
+  wm.SetApiKey("___");
+  
+  const cpr::Url kLocationUrl = cpr::Url{"http://dataservice.accuweather.com/locations/v1/cities/search"};
+  std::cout << "Ufa = " << wm.GetLocationKey("Ufa") << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+  // std::cout << "t = " << weather_mock->GetTemperature("Ufa") << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << std::endl;
+  // EXPECT_CALL(*weather_mock, Get(_, _));
+ 
   weather_mock->DelegateToFakeGet();
 }
