@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <gtest/gtest.h>
@@ -9,13 +8,10 @@ using ::testing::NiceMock;
 
 class WeatherTestCase : public ::testing::Test {
  public:
-  // WeatherTestCase();
-  static void SetUpTestSuite();
-  static void TearDownTestSuite();
-  // ~WeatherTestCase();
+  WeatherTestCase();
  protected:
-  // WeatherMock* weather_mock;
-  static NiceMock<WeatherMock>* weather_mock;
+  NiceMock<WeatherMock> weather_mock;
+  Weather real_weather;
 };
 
 

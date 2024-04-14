@@ -53,7 +53,7 @@ WeatherFake::WeatherFake() {
     return;
   }
   std::ifstream f("weather_cache/weather_cache.json");
-  requests_cache_ = FromFile(f);
+  requests_cache_.merge(FromFile(f));
   f.close();
 }
 
@@ -64,10 +64,6 @@ WeatherFake::~WeatherFake() {
   std::ofstream fout("weather_cache/weather_cache.json");
   ToFile(requests_cache_, fout);
   fout.close();
-}
-
-cpr::Response WeatherFake::Get(const std::string& city, const cpr::Url& url) {
-  return FakeGet(city, url);
 }
 
 cpr::Response WeatherFake::FakeGet(const std::string& city, const cpr::Url& url) {
