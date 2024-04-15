@@ -16,6 +16,7 @@ class WeatherFake : public Weather {
  protected:
   cpr::Response Get(const std::string& city, const cpr::Url& url);
  private:
+  std::string path_ = "../weather_cache/weather_cache.json";
   std::string api_key_;
   std::unordered_map<std::string, std::unordered_map<std::string, cpr::Response>> requests_cache_;
 };

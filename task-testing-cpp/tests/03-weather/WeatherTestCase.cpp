@@ -12,7 +12,7 @@ WeatherTestCase::WeatherTestCase() {
     f >> key;
     f.close();
   }
-  
+
   weather_mock.SetFakeApiKey(key);
   weather_fake.SetFakeApiKey(key);
 }
@@ -79,7 +79,7 @@ TEST_F(WeatherTestCase, GetTomorrowDiffCheck) {
   std::string s = " than today.";
 
   for (int i = -10; i <= 10; i += 5) {
-    EXPECT_CALL(weather_mock, GetTomorrowTemperature(city)).Times(4).WillRepeatedly(Return(i));
+    EXPECT_CALL(weather_mock, GetTomorrowTemperature(city)).Times(5).WillRepeatedly(Return(i));
 
     EXPECT_CALL(weather_mock, GetTemperature(city)).WillOnce(Return(i + 10));
     EXPECT_EQ(weather_mock.GetTomorrowDiff(city), f + "much colder" + s);
@@ -92,5 +92,8 @@ TEST_F(WeatherTestCase, GetTomorrowDiffCheck) {
 
     EXPECT_CALL(weather_mock, GetTemperature(city)).WillOnce(Return(i - 2));
     EXPECT_EQ(weather_mock.GetTomorrowDiff(city), f + "warmer" + s);
+
+    EXPECT_CALL(weather_mock, GetTemperature(city)).WillOnce(Return(i));
+    EXPECT_EQ(weather_mock.GetTomorrowDiff(city), f + "the same" + s);
   }
 }

@@ -47,21 +47,21 @@ void ToFile(const std::unordered_map<std::string, std::unordered_map<std::string
 }
 
 WeatherFake::WeatherFake() {
-  if (!fs::exists("weather_cache/weather_cache.json")) {
-    fs::create_directory("weather_cache");
-    std::ofstream("weather_cache/weather_cache.json").close();
+  if (!fs::exists(path_)) {
+    fs::create_directory("../weather_cache");
+    std::ofstream(path_).close();
     return;
   }
-  std::ifstream f("weather_cache/weather_cache.json");
+  std::ifstream f(path_);
   requests_cache_.merge(FromFile(f));
   f.close();
 }
 
 WeatherFake::~WeatherFake() {
-  std::ifstream fin("weather_cache/weather_cache.json");
+  std::ifstream fin(path_);
   requests_cache_.merge(FromFile(fin));
   fin.close();
-  std::ofstream fout("weather_cache/weather_cache.json");
+  std::ofstream fout(path_);
   ToFile(requests_cache_, fout);
   fout.close();
 }
@@ -85,6 +85,7 @@ cpr::Response WeatherFake::Get(const std::string& city, const cpr::Url& url) {
 }
 
 void WeatherFake::SetFakeApiKey(const std::string& api_key) {
+  Weather::SetApiKey(api_key);
   api_key_ = api_key;
 }
 
