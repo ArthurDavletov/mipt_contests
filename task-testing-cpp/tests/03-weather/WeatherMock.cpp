@@ -66,7 +66,7 @@ WeatherFake::~WeatherFake() {
   fout.close();
 }
 
-cpr::Response WeatherFake::FakeGet(const std::string& city, const cpr::Url& url) {
+cpr::Response WeatherFake::Get(const std::string& city, const cpr::Url& url) {
   const std::string& url_str = url.str();
   if (requests_cache_.find(url_str) == requests_cache_.end()) {
     requests_cache_[url_str] = std::unordered_map<std::string, cpr::Response>();
@@ -86,17 +86,10 @@ cpr::Response WeatherFake::FakeGet(const std::string& city, const cpr::Url& url)
 
 void WeatherFake::SetFakeApiKey(const std::string& api_key) {
   api_key_ = api_key;
+}
+
+void WeatherMock::SetMockApiKey(const std::string& api_key) {
   SetApiKey(api_key);
-}
-
-WeatherMock::WeatherMock() : WeatherFake() {
-  ON_CALL(*this, SetApiKey).WillByDefault([this](const std::string& api_key) {
-    SetFakeApiKey(api_key);
-  });
-}
-
-void WeatherMock::DelegateToFakeGet() {
-  ON_CALL(*this, Get).WillByDefault([this](const std::string& city, const cpr::Url& url) {
-    return FakeGet(city, url);
-  });
+  SetFakeApiKey(api_key);
+  real.SetApiKey(api_key);
 }

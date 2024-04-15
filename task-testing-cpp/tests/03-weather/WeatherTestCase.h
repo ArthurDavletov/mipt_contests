@@ -9,9 +9,10 @@ using ::testing::NiceMock;
 class WeatherTestCase : public ::testing::Test {
  public:
   WeatherTestCase();
+  virtual ~WeatherTestCase() = default;
  protected:
   NiceMock<WeatherMock> weather_mock;
-  Weather real_weather;
+  WeatherFake weather_fake;
 };
 
 

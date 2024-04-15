@@ -1,8 +1,3 @@
-//
-// Created by akhtyamovpavel on 5/1/20.
-//
-
-
 #pragma once
 
 #include <gtest/gtest.h>
@@ -15,6 +10,8 @@ void RecursiveCheck(const FileNode&, bool);
 
 class TreeTestCase : public ::testing::Test {
  public:
+  TreeTestCase() = default;
+  virtual ~TreeTestCase() = default;
   static void SetUpTestSuite();
   static void TearDownTestSuite();
 };

@@ -11,28 +11,26 @@ void ToFile(const std::unordered_map<std::string, std::unordered_map<std::string
 class WeatherFake : public Weather {
  public:
   WeatherFake();
-  ~WeatherFake();
+  virtual ~WeatherFake();
   void SetFakeApiKey(const std::string& api_key);
  protected:
-  cpr::Response FakeGet(const std::string& city, const cpr::Url& url);
+  cpr::Response Get(const std::string& city, const cpr::Url& url);
  private:
   std::string api_key_;
-
   std::unordered_map<std::string, std::unordered_map<std::string, cpr::Response>> requests_cache_;
 };
 
 class WeatherMock : public WeatherFake {
  public:
-  WeatherMock();
-  void DelegateToFakeGet();
-  MOCK_METHOD(json, GetResponseForCity, (const std::string &city, const cpr::Url& url));
+  WeatherMock() = default;
+  virtual ~WeatherMock() = default;
+  void SetMockApiKey(const std::string& api_key);
   MOCK_METHOD(float, GetTemperature, (const std::string& city), (override));
   MOCK_METHOD(float, GetTomorrowTemperature, (const std::string& city), (override));
   MOCK_METHOD(std::string, GetLocationKey, (const std::string& city), (override));
-  MOCK_METHOD(float, FindDiffBetweenTwoCities, (const std::string& city1, const std::string& city2));
-  MOCK_METHOD(void, SetApiKey, (const std::string& api_key));
-  MOCK_METHOD(std::string, GetDifferenceString, (const std::string& city1, const std::string& city2));
-  MOCK_METHOD(std::string, GetTomorrowDiff, (const std::string& city));
   MOCK_METHOD(cpr::Response, Get, (const std::string& city, const cpr::Url& url), (override));
+  Weather real;
+ private:
+  bool called_get_ = false;
 };
 
