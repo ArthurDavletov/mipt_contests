@@ -1,7 +1,3 @@
-task1/repo
-task1/backup
-task1/*.tar.gz
-task1/*.cpp
 task-cmake/A/index.h
 task-cmake/C/main
 task-cmake/build.sh
