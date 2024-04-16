@@ -5,12 +5,6 @@ task1/*.cpp
 task-cmake/A/index.h
 task-cmake/C/main
 task-cmake/build.sh
-PythonEnvironment/*
-3rdparty/
-.idea/
-task-cmake/A/index.h
-task-cmake/C/main
-task-cmake/build.sh
 build/
 bin/
 lib/
