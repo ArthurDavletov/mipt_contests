@@ -30,8 +30,5 @@ class WeatherMock : public WeatherFake {
   MOCK_METHOD(float, GetTomorrowTemperature, (const std::string& city), (override));
   MOCK_METHOD(std::string, GetLocationKey, (const std::string& city), (override));
   MOCK_METHOD(cpr::Response, Get, (const std::string& city, const cpr::Url& url), (override));
-  Weather real;
- private:
-  bool called_get_ = false;
 };
 

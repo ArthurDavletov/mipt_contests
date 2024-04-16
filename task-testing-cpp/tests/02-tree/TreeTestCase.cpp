@@ -72,7 +72,7 @@ TEST_F(TreeTestCase, DirsOnlyFalse) {
 TEST_F(TreeTestCase, FilterEmptyDirs) {
   FileNode root = GetTree("test/", false);
   FilterEmptyNodes(root, "test/");
-  ASSERT_TRUE(!AnyEmptyDirectories("test/"));
+  ASSERT_FALSE(AnyEmptyDirectories("test/"));
 }
 
 TEST_F(TreeTestCase, RemoveCurrentFolder) {

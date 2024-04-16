@@ -92,5 +92,4 @@ void WeatherFake::SetFakeApiKey(const std::string& api_key) {
 void WeatherMock::SetMockApiKey(const std::string& api_key) {
   SetApiKey(api_key);
   SetFakeApiKey(api_key);
-  real.SetApiKey(api_key);
 }

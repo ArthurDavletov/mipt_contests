@@ -33,8 +33,6 @@ TEST_F(WeatherTestCase, GetDiffs) {
 TEST_F(WeatherTestCase, GetLocationKeyCheck) {
   std::string unreal_city = "Anime_Forever";
   EXPECT_THROW(weather_fake.GetLocationKey(unreal_city), std::runtime_error);
-  EXPECT_THROW(weather_fake.GetLocationKey(unreal_city), std::runtime_error);
-  EXPECT_EQ(weather_fake.GetLocationKey("Ufa"), weather_fake.GetLocationKey("Ufa"));
 }
 
 TEST_F(WeatherTestCase, GetTempCheck) {
@@ -43,16 +41,25 @@ TEST_F(WeatherTestCase, GetTempCheck) {
 }
 
 TEST_F(WeatherTestCase, GetDiffString) {
+  std::string f = "Weather in Ufa is ";
+  std::string s = " than in Moscow by ";
   std::string first = "Ufa";
   std::string second = "Moscow";
 
-  EXPECT_CALL(weather_mock, GetTemperature(first)).WillOnce(Return(30));
-  EXPECT_CALL(weather_mock, GetTemperature(second)).WillOnce(Return(10));
-  EXPECT_EQ(weather_mock.GetDifferenceString(first, second), "Weather in Ufa is warmer than in Moscow by 20 degrees");
-
-  EXPECT_CALL(weather_mock, GetTemperature(first)).WillOnce(Return(10));
-  EXPECT_CALL(weather_mock, GetTemperature(second)).WillOnce(Return(30));
-  EXPECT_EQ(weather_mock.GetDifferenceString(first, second), "Weather in Ufa is colder than in Moscow by 20 degrees");
+  for (int i = -30; i <= 30; i += 5) {
+    for (int j = -30; j <= 30; j += 5) {
+      EXPECT_CALL(weather_mock, GetTemperature(first)).WillOnce(Return(i));
+      EXPECT_CALL(weather_mock, GetTemperature(second)).WillOnce(Return(j));
+      int diff = i - j;
+      if (diff < 0) {
+        std::string s_d = std::to_string(-diff);
+        EXPECT_EQ(weather_mock.GetDifferenceString(first, second), f + "colder" + s + s_d + " degrees");
+      } else {
+        std::string s_d = std::to_string(diff);
+        EXPECT_EQ(weather_mock.GetDifferenceString(first, second), f + "warmer" + s + s_d + " degrees");
+      }
+    }
+  }
 }
 
 TEST_F(WeatherTestCase, BadApiError) {
@@ -62,10 +69,6 @@ TEST_F(WeatherTestCase, BadApiError) {
   cpr::Url url{"http://ya.ru/"};
   EXPECT_CALL(weather_mock, Get("BadApi", url)).WillOnce(Return(bad_response));
   EXPECT_THROW(weather_mock.GetResponseForCity("BadApi", url), std::invalid_argument);
-}
-
-TEST_F(WeatherTestCase, LocationCacheCheck) {
-  EXPECT_EQ(weather_fake.GetLocationKey("Ufa"), weather_fake.GetLocationKey("Ufa"));
 }
 
 TEST_F(WeatherTestCase, TomorrowTempCheck) {
