@@ -3,3 +3,11 @@ build/
 3rdparty/
 bin/
 .idea/
+task-cmake/A/index.h
+task-cmake/C/main
+task-cmake/build.sh
+build/
+bin/
+lib/
+googletest-1.14.0/
+.vscode/
