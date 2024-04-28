@@ -57,11 +57,13 @@ cd task-testing-cpp
 
 #### TreeTestCase
 
-Для удобства тестирования были введены `void RecursiveCheck(FileNode, fs::path, bool)` и `bool AnyEmptyDirectories(fs::path)`.
+Для удобства тестирования были введены `void RecursiveCheck(FileNode, fs::path, bool)`, `bool AnyEmptyDirectories(fs::path)` и `fs::path GenerateNotExistDirName(string prefix)`.
 
 `RecursiveCheck` проверяет, является ли `FileNode` директорией. Если она является таковой, то проверяется корректность размера вектора `chidren`. А далее функция рекурсивно вызывается для дочерних директорий.
 
 `AnyEmptyDirectories` проверяет наличие хотя бы одной пустой директории
+
+`GenerateNotExistDirName` создаёт директорию, которая не будет существовать в данной папке в формате `f"{prefix}_{rand}"`, где `rand` - случайное число. Если директория будет существовать, то номер будет перебираться заново
 
 Перед тестированием (`SetUpTestSuite`) создаётся следующая структура:
 
