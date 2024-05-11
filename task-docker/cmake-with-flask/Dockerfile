@@ -3,6 +3,7 @@ FROM alpine:3.14
 
 RUN apk add py3-flask
 RUN apk add build-base
+RUN apk add cmake make
 
 RUN addgroup -g 2000 tp2024user \
     && adduser -u 2000 -G tp2024user -s /bin/sh -D tp2024user
