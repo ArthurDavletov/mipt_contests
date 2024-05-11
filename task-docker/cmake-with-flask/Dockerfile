@@ -16,4 +16,4 @@ COPY . .
 
 RUN sh ./build.sh
 
-CMD [ "python3" , "app.py" , "--port" , "8898"]
+CMD [ "python3" , "app.py" , "--port" , "8898" , "--host" , "0.0.0.0" ]
