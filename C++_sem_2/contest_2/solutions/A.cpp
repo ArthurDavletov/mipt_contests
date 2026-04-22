@@ -1,0 +1,1 @@
+#include <iostream>\n#include <set>\n\nint main() {\n  int n;\n  std::cin >> n;\n  std::set<std::set<int>> edges;\n  for (int i = 1; i <= n; i++) {\n    for (int j = 1; j <= n; j++) {\n      int is_connected;\n      std::cin >> is_connected;\n      if (is_connected) {\n        edges.insert({i, j});\n      }\n    }\n  }\n  std::cout << edges.size() << std::endl;\n  return 0;\n}
